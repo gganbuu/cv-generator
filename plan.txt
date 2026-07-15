@@ -1,0 +1,36 @@
+header
+- headerState 
+    - name (first name and last name)
+    - phone number
+    - email
+
+career objective
+- description
+
+education 
+- educationBlockState
+    - degree
+    - time period
+    - university
+    - details/achievements (maybe can use separate state?)
+
+experience
+- experienceBlockState
+    - title
+    - time period
+    - company
+    - responsibilities (maybe can use separate state?)
+
+relevant projects
+- projectBlockState
+    - title
+    - time period
+    - project name
+    - responsibilities (maybe can use separate state?)
+
+
+referees
+- refereeStateblock
+    - name
+    - title
+    - ph number

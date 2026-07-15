@@ -1,0 +1,109 @@
+:root {
+    --root-margin-top: 0;
+    --root-width: clamp(300px, 100%, 1000px);
+
+    --h1-font-size: 2rem;
+    --p-font-size: 1rem;
+
+    --hr-padding-bottom: 1rem; 
+}
+
+input {
+    padding: 0;
+    border: 0;
+    width: 100%;
+    /* padding-block: 0; */
+    /* padding-inline: 0; */
+}
+
+textarea {
+    padding: 0;
+    border: 0;
+    width: 100%;
+    font-family: inherit;
+    resize: none;
+    box-sizing: border-box;
+    field-sizing: content;
+}
+
+
+h1 {
+    all: unset;
+    font-size: var(--h1-font-size)
+}
+
+p {
+    all: unset;
+    font-size: var(--p-font-size)
+}
+
+hr {
+    width: 100%;
+}
+
+/* default containers */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--root-margin-top);  
+    width: var(--root-width);
+}
+
+
+/* #name, #email, #linkedIn, #gitHub { display: flex} */
+
+/* header */
+.section-title {
+    font-size: var(--h1-font-size);
+}
+
+.section-p {
+    font-size: var(--p-font-size);
+}
+
+.header-grid {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr;
+    grid-template-areas: 
+    "cell1 cell2"
+    "cell3 cell4";
+}
+
+
+#phone {
+    grid-area: cell1;
+}
+
+#email {
+    grid-area: cell3;
+}
+
+#linkedIn {
+    grid-area: cell2;
+    direction: rtl;
+
+}
+
+#gitHub {
+    grid-area: cell4;
+    direction: rtl;
+}
+
+/* main */
+.education-header { 
+    display: flex;
+    justify-content: space-between;
+}
+
+.education-date {
+    display: flex;
+}
