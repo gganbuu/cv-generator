@@ -5,13 +5,25 @@
     --h1-font-size: 2rem;
     --p-font-size: 1rem;
 
-    --hr-padding-bottom: 1rem; 
+    --hr-padding-bottom: 1rem;
+
+    --header-grid-template: 1fr 1fr / 1fr 1fr;
+    --header-grid-template-areas:
+        "cell1 cell2"
+        "cell3 cell4";
+    --phone-grid-area: cell1;
+    --email-grid-area: cell3;
+    --linkedin-grid-area: cell2;
+    --github-grid-area: cell4;
+
 }
 
+/* user inputs */
 input {
     padding: 0;
-    border: 0;
+    border: 1px dashed black;
     width: 100%;
+    direction: ltr;
     /* padding-block: 0; */
     /* padding-inline: 0; */
 }
@@ -26,6 +38,14 @@ textarea {
     field-sizing: content;
 }
 
+/* text styling */
+.section-title {
+    font-size: var(--h1-font-size);
+}
+
+.section-p {
+    font-size: var(--p-font-size);
+}
 
 h1 {
     all: unset;
@@ -62,39 +82,35 @@ body {
 /* #name, #email, #linkedIn, #gitHub { display: flex} */
 
 /* header */
-.section-title {
-    font-size: var(--h1-font-size);
-}
 
-.section-p {
-    font-size: var(--p-font-size);
+.header-title {
+    display: flex;
+    justify-content: space-between;
 }
 
 .header-grid {
     display: grid;
-    grid-template: 1fr 1fr / 1fr 1fr;
-    grid-template-areas: 
-    "cell1 cell2"
-    "cell3 cell4";
+    grid-template: var(--header-grid-template);
+    grid-template-areas: var(--header-grid-template-areas);
 }
 
 
 #phone {
-    grid-area: cell1;
+    grid-area: var(--phone-grid-area);
 }
 
 #email {
-    grid-area: cell3;
+    grid-area: var(--email-grid-area);
 }
 
 #linkedIn {
-    grid-area: cell2;
+    grid-area: var(--linkedin-grid-area);
     direction: rtl;
 
 }
 
 #gitHub {
-    grid-area: cell4;
+    grid-area: var(--github-grid-area);
     direction: rtl;
 }
 

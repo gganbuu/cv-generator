@@ -34,3 +34,7 @@ referees
     - name
     - title
     - ph number
+
+To Do:
+- Text inputs to dynamically change with the amount of input it has 
+- Spacing shifts caused by accessing buttons

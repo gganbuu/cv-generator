@@ -1,30 +1,16 @@
 import { useState } from "react"
 
-export function TextInput({value, className, onChange, id, multiline}) {
-    const [isClicked, setIsClicked] = useState(false)
+export function TextInput({value, className, id, placeholder, onChange, editable}) {
 
-    const handleMouseClick = () => {
-        setIsClicked(true)
-    }
-
-    const handleMouseLeave = () => {
-        setIsClicked(false)
-    }
 
     return (
         <div
-        onClick={() => handleMouseClick()}
-        onMouseLeave={() => handleMouseLeave()}
         id={id}>
-        {isClicked ? (
-            multiline ? (
-                <textarea
-                value={value}
-                className={className}
-                onChange={onChange}/>
-            ) : (
+        {editable ? (
+            (
                 <input type="text"
                 value={value}
+                placeholder={placeholder}
                 className={className}
                 onChange={onChange}/>
             )
