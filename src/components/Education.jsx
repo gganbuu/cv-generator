@@ -6,16 +6,35 @@ import { DateInput } from "./DateInput.jsx"
 import { BulletInput } from "./BulletInput.jsx";
 
 export function Education() {
+    const [editable, setEditable] = useState(false)
+    const [isHovered, setIsHovered] = useState(false)
+    const [educationBlocks, setEducationBlocks] = useState([<EducationBlock id={crypto.randomUUID()}/>])
+
+    const handleAddEducationBlocks = () => {
+        setEducationBlocks([...educationBlocks, <EducationBlock id={crypto.randomUUID()}/>])
+    }
+
+    const handleHoveredTrue = () => {
+        setIsHovered(true)
+    }
+
+    const handleHoveredFalse = () => {
+        setIsHovered(false)
+    }
+
     return (
-        <>
+        <div className="education-section" onMouseEnter={handleHoveredTrue} onMouseLeave={handleHoveredFalse}>
             <h1>Education</h1>
             <hr />
-            <EducationBlock/>
-        </>
+            <ul className="education-blocks">
+                {educationBlocks.map(block => {return (<li key={block.id}>{block}</li>)})}
+            </ul>
+            <button className={isHovered ? "": "hidden"} onClick={handleAddEducationBlocks}>Add Education</button>
+        </div>
     )
 }
 
-function EducationBlock() {
+function EducationBlock({id}) {
     const [educationHeaderState, setEducationHeaderState] = useState({degree: 'Bachelor of Example',
                                                                     timeStart: '2022-02-01',
                                                                     timeEnd: '2026-02-01',
@@ -70,29 +89,13 @@ function EducationBlock() {
             editable={editable}
             onChange={(e) => handleDegreeChange(e)}/>
 
-            <EducationBlockAchievements/>
+            <EducationBlockAchievements editable={editable} isHovered={isHovered}/>
         </div>
     )
 }
 
-function EducationBlockAchievements() {
+function EducationBlockAchievements({editable, isHovered}) {
     const [achievements, setAchievements] = useState([{id: crypto.randomUUID(), achievement: "achievement 1"},{id: crypto.randomUUID(), achievement: "achievement 2"}])
-    
-    const [editable, setEditable] = useState(false)
-    const handleEditable = () => {
-        editable ? setEditable(false): setEditable(true);
-    }
-    
-    const [isHovered, setIsHovered] = useState(false)
-    const handleHoveredTrue = () => {
-        setIsHovered(true)
-    }
-    const handleHoveredFalse = () => {
-        setIsHovered(false)
-    }
-
-    
-
 
     const handleAchievementChange = (e) => {
         const editedAchievements = achievements.map(item => {
@@ -115,11 +118,7 @@ function EducationBlockAchievements() {
     }
     
     return (
-        <div className="achievements-box" onMouseEnter={handleHoveredTrue} onMouseLeave={handleHoveredFalse}>
-            <div className={isHovered ? "edit-and-clear-box": "edit-and-clear-box hidden"}>
-                <EditButton onClick={() => handleEditable()} editable={editable}/>
-                <ClearButton onClick={() => handleClear()}/>
-            </div>
+        <div className="achievements-box">
             <ul>
                 {achievements.map(item => (
                     <li key={item.id}>
@@ -131,7 +130,10 @@ function EducationBlockAchievements() {
                         onClick={(e) => handleDeleteAchievement(e)}/>
                     </li>
                 ))}
-                <button className={editable ? "": "hidden"} onClick={handleAddAchievement}>Add</button>
+                <div className={editable ? "": "hidden"}>
+                    <button onClick={handleAddAchievement}>Add</button>
+                    <ClearButton/>
+                </div>
             </ul>
         </div>
     )
