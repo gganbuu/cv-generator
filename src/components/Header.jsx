@@ -12,7 +12,13 @@ export function Header() {
     
     const [editable, setEditable] = useState(false)
     
-    
+    const handleButtonDisplay = () => {
+        const header = document.querySelector("header")
+        header.querySelector(".edit-and-clear-box").classList.toggle("hidden")
+    }
+        
+
+
     const handleEditable = () => {
         editable == true ? setEditable(false): setEditable(true);
     }
@@ -47,9 +53,8 @@ export function Header() {
 
     return (
         <>
-            <header>
+            <header onMouseEnter={handleButtonDisplay} onMouseLeave={handleButtonDisplay}>
                 <div className="header-title">
-
                     <TextInput value={details.name}
                     className="section-title"
                     id="name"
@@ -57,10 +62,11 @@ export function Header() {
                     editable={editable}
                     onChange={(e) => handleNameChange(e)}/>
 
-                    <div className="edit-and-clear-box">
+                    <div className={"edit-and-clear-box hidden"}>
                         <EditButton onClick={() => handleEditable()} editable={editable}/>
                         <ClearButton onClick={() => handleClear()}/>
                     </div>
+
                 </div>
 
                 <div className="header-grid">

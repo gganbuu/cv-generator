@@ -1,14 +1,12 @@
 import { useState } from "react"
 
 export function TextInput({value, className, id, placeholder, onChange, editable}) {
-
-
     return (
-        <div
-        id={id}>
+        <div id={id}>
         {editable ? (
-            (
+            (           
                 <input type="text"
+                // id={id} 
                 value={value}
                 placeholder={placeholder}
                 className={className}

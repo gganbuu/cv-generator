@@ -3,42 +3,61 @@
     --root-width: clamp(300px, 100%, 1000px);
 
     --h1-font-size: 2rem;
+    --h2-font-size: 1.2rem;
     --p-font-size: 1rem;
 
     --hr-padding-bottom: 1rem;
 
     --header-grid-template: 1fr 1fr / 1fr 1fr;
     --header-grid-template-areas:
-        "cell1 cell2"
-        "cell3 cell4";
+        "cell1 cell3"
+        "cell2 cell4";
     --phone-grid-area: cell1;
-    --email-grid-area: cell3;
-    --linkedin-grid-area: cell2;
+    --email-grid-area: cell2;
+    --linkedin-grid-area: cell3;
     --github-grid-area: cell4;
+
+    --input-border-styling: 1px dashed black;
 
 }
 
 /* user inputs */
 input {
     padding: 0;
-    border: 1px dashed black;
+    border: var(--input-border-styling);
     width: 100%;
     direction: ltr;
+    font-family: inherit;
+    font-size: var(--p-font-size)
     /* padding-block: 0; */
     /* padding-inline: 0; */
 }
 
 textarea {
     padding: 0;
-    border: 0;
+    border: var(--input-border-styling);
     width: 100%;
     font-family: inherit;
+    font-size: var(--p-font-size);
     resize: none;
     box-sizing: border-box;
     field-sizing: content;
 }
 
+
+
+.edit-and-clear-box {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.bullet-input {
+    display: flex;
+}
+
 /* text styling */
+
 .section-title {
     font-size: var(--h1-font-size);
 }
@@ -50,6 +69,11 @@ textarea {
 h1 {
     all: unset;
     font-size: var(--h1-font-size)
+}
+
+h2 {
+    all: unset;
+    font-size: var(--h2-font-size)
 }
 
 p {
@@ -122,4 +146,14 @@ body {
 
 .education-date {
     display: flex;
+}
+
+
+/* helper */
+.hidden {
+    visibility: hidden;
+}
+
+.ltr {
+    direction: ltr;
 }
