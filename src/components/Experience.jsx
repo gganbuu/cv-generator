@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"
 import { EditButton } from "./EditButton";
 import { ClearButton } from "./ClearButton.jsx";
 import { TextInput } from "./TextInput.jsx";
@@ -6,18 +6,13 @@ import { DateInput } from "./DateInput.jsx"
 import { BulletInput } from "./BulletInput.jsx";
 import { DeleteButton } from "./DeleteButton.jsx";
 
-export function Education() {
+export function Experience() {
     const [editable, setEditable] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
-    const [educationBlocks, setEducationBlocks] = useState([<EducationBlock id={crypto.randomUUID()}/>])
+    const [experienceBlocks, setExperienceBlocks] = useState([<ExperienceBlock id={crypto.randomUUID()}/>])
 
-    const handleAddEducationBlocks = () => {
-        setEducationBlocks([...educationBlocks, <EducationBlock id={crypto.randomUUID()}/>])
-    }
-
-    const handleDeleteEducationBlock = (e) => {
-        const editedEducationBlocks = [...educationBlocks.filter(block => block.props.id != e.target.id)]
-        setEducationBlocks(editedEducationBlocks)
+    const handleAddExperienceBlocks = () => {
+        setExperienceBlocks([...experienceBlocks, <ExperienceBlock id={crypto.randomUUID()}/>])
     }
 
     const handleHoveredTrue = () => {
@@ -29,24 +24,23 @@ export function Education() {
     }
 
     return (
-        <div className="education-section" onMouseEnter={handleHoveredTrue} onMouseLeave={handleHoveredFalse}>
-            <h1>Education</h1>
+        <div className="experience-section" onMouseEnter={handleHoveredTrue} onMouseLeave={handleHoveredFalse}>
+            <h1>Experience</h1>
             <hr />
             <ul className="education-blocks">
-                {educationBlocks.map(block => {return (<li key={block.id}>{block}</li>)})}
+                {experienceBlocks.map(block => {return (<li key={block.id}>{block}</li>)})}
             </ul>
-            <button className={isHovered ? "": "hidden"} onClick={handleAddEducationBlocks}>Add Education</button>
-        </div>
+            <button className={isHovered ? "": "hidden"} onClick={handleAddExperienceBlocks}>Add Experience</button>
+        </div> 
     )
 }
 
-function EducationBlock({id, handleDeleteEducationBlock}) {
-    const [educationHeaderState, setEducationHeaderState] = useState({degree: 'Bachelor of Example',
+function ExperienceBlock({id, handleDeleteExperienceBlock}) {
+    const [experienceHeaderState, setExperienceHeaderState] = useState({title: 'Example Associate',
                                                                     timeStart: '2022-02-01',
                                                                     timeEnd: '2026-02-01',
-                                                                    university: 'Example University'
-    })
-
+                                                                    location: 'Example City'})
+    
     const [editable, setEditable] = useState(false)
 
     const [isHovered, setIsHovered] = useState(false)
@@ -62,46 +56,43 @@ function EducationBlock({id, handleDeleteEducationBlock}) {
     const handleEditable = () => {
         editable ? setEditable(false): setEditable(true);
     }
-    
-    const handleDegreeChange = (e) => {
-        setEducationHeaderState({...educationHeaderState, degree: e.target.value})
-    }
+
     return (
         <div className="education-box" onMouseEnter={handleHoveredTrue} onMouseLeave={handleHoveredFalse}>
             <div className={isHovered ? "edit-and-clear-box": "edit-and-clear-box hidden"}>
                 <EditButton onClick={() => handleEditable()} editable={editable}/>
                 <ClearButton onClick={() => handleClear()}/>
-                <DeleteButton id={id} onClick={(e) => handleDeleteEducationBlock(e)}></DeleteButton>
+                <DeleteButton id={id} onClick={(e) => handleDeleteExperienceBlock(e)}></DeleteButton>
             </div>
             <div className="education-header">
-                <TextInput value={educationHeaderState.degree}
+                <TextInput value={experienceHeaderState.title}
                 className="section-p"
                 editable={editable}
                 onChange={(e) => handleDegreeChange(e)}/>
                 <div className="education-date">
-                    <DateInput value={educationHeaderState.timeStart}
+                    <DateInput value={experienceHeaderState.timeStart}
                     className="section-p"
                     editable={editable}
                     onChange={(e) => handleDegreeChange(e)}/>
                     <p> — </p>
-                    <DateInput value={educationHeaderState.timeEnd}
+                    <DateInput value={experienceHeaderState.timeEnd}
                     className="section-p"
                     editable={editable}
                     onChange={(e) => handleDegreeChange(e)}/>
                 </div>
             </div>
 
-            <TextInput value={educationHeaderState.university}
+            <TextInput value={experienceHeaderState.location}
             className="section-p"
             editable={editable}
             onChange={(e) => handleDegreeChange(e)}/>
 
-            <EducationBlockAchievements editable={editable} isHovered={isHovered}/>
+            <ExperienceBlockAchievements editable={editable} isHovered={isHovered}/>
         </div>
     )
 }
 
-function EducationBlockAchievements({editable, isHovered}) {
+function ExperienceBlockAchievements({editable, isHovered}) {
     const [achievements, setAchievements] = useState([{id: crypto.randomUUID(), achievement: "achievement 1"},{id: crypto.randomUUID(), achievement: "achievement 2"}])
 
     const handleAchievementChange = (e) => {

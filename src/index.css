@@ -155,6 +155,11 @@ body {
     list-style: none;
 }
 
+.achievement-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 /* helper */
 .hidden {

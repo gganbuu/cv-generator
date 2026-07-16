@@ -1,3 +1,5 @@
+import { DeleteButton } from "./DeleteButton.jsx" 
+
 export function BulletInput({value, id, placeholder, className, onChange, onClick, editable}) {
     
     return (
@@ -11,7 +13,7 @@ export function BulletInput({value, id, placeholder, className, onChange, onClic
                     placeholder={placeholder}
                     className={className}
                     onChange={onChange}/>
-                    <button id={id} onClick={onClick}>Delete</button>
+                    <DeleteButton id={id} onClick={onClick}>Delete</DeleteButton>
                 </>
             )
             ): (<p>{value}</p>)}
